@@ -2,11 +2,11 @@ import React from 'react';
 import Friend from '../Friend/Friend';
 
 const Friends = props => (
-    <ul>
+    <article>
         {
-            props.friends.map(friend => <Friend friend={friend} />)
+            props.friends.map(friend => <Friend friend={friend} key={friend.id} deleteFriend={props.deleteFriend} />)
         }
-    </ul>
+    </article>
 )
 
 export default Friends;
