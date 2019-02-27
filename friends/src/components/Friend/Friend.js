@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom'; 
+import FriendForm from '../FriendForm/FriendForm';
 
 const Friend = props => (
     <section>
@@ -7,7 +9,22 @@ const Friend = props => (
         <p>Email: {props.friend.email}</p>
         <div>
             <button onClick={() => props.deleteFriend(props.friend.id)}>Delete</button>
+            <Link to={`/update/${props.friend.id}`}>
+                <button>Update</button>
+            </Link>
         </div>
+        <Route
+            path={`/update/${props.friend.id}`}
+            render={() => (
+                <FriendForm
+                    age={props.age}
+                    name={props.name}
+                    email={props.email}
+                    handleChange={props.handleChange}
+                    submit={e => props.updateFriend(props.friend.id, e)}
+                />
+            )}
+        />
     </section>
 )
 

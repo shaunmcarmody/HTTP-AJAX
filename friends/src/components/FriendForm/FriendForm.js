@@ -1,12 +1,11 @@
 import React from 'react';
 
 const FriendForm = props => (
-    <form onSubmit={props.addNewFriend}>
+    <form onSubmit={props.submit}>
         <input
             name="name"
             onChange={props.handleChange}
             placeholder="name"
-            required={true}
             type="text"
             value={props.name}
         />
@@ -14,7 +13,6 @@ const FriendForm = props => (
             name="age"
             onChange={props.handleChange}
             placeholder="age"
-            required={true}
             type="text"
             value={props.age}
         />
@@ -22,11 +20,10 @@ const FriendForm = props => (
             name="email"
             onChange={props.handleChange}
             placeholder="email"
-            required={true}
             type="email"
             value={props.email}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Add Friend</button>
     </form>
 )
 
