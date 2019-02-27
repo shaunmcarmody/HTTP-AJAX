@@ -1,8 +1,10 @@
 import React from 'react';
 import Friend from '../Friend/Friend';
+import './Friends.sass';
 
 const Friends = props => (
-    <article>
+    <main className="friends">
+        <h1>Friends List</h1>
         {
             props.friends.map(friend => (
                 <Friend
@@ -17,7 +19,7 @@ const Friends = props => (
                 />
             ))
         }
-    </article>
+    </main>
 )
 
 export default Friends;

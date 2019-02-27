@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom'; 
 import FriendForm from '../FriendForm/FriendForm';
+import './Friend.sass';
 
 const Friend = props => (
-    <section>
+    <section className="friend">
         <h1>{props.friend.name}</h1>
         <p>Age: {props.friend.age}</p>
         <p>Email: {props.friend.email}</p>

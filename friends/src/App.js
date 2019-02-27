@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import './App.sass';
 import Friends from './components/Friends/Friends';
 import FriendForm from './components/FriendForm/FriendForm';
 
@@ -73,28 +73,28 @@ class App extends Component {
   render() {
     return (
       <>
-        <header>
+        <header className="header">
+        <div className="header-container">
           <h1>Add New Friend</h1>
-          <FriendForm
-            submit={this.addNewFriend}
-            age={this.state.age}
-            email={this.state.email}
-            handleChange={this.handleFormChange}
-            name={this.state.name}
-          />
+            <FriendForm
+              submit={this.addNewFriend}
+              age={this.state.age}
+              email={this.state.email}
+              handleChange={this.handleFormChange}
+              name={this.state.name}
+            />
+        </div>
+          
         </header>
-        <main>
-          <h1>Friends List</h1>
-          <Friends
-            age={this.state.age}
-            deleteFriend={this.deleteFriend}
-            email={this.state.email}
-            friends={this.state.friends}
-            handleChange={this.handleFormChange}
-            name={this.state.name}
-            updateFriend={this.updateFriend}
-          />
-        </main>
+        <Friends
+          age={this.state.age}
+          deleteFriend={this.deleteFriend}
+          email={this.state.email}
+          friends={this.state.friends}
+          handleChange={this.handleFormChange}
+          name={this.state.name}
+          updateFriend={this.updateFriend}
+        />
       </>
     );
   }
