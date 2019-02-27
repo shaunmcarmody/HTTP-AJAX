@@ -72,24 +72,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <FriendForm
-          submit={this.addNewFriend}
-          age={this.state.age}
-          email={this.state.email}
-          handleChange={this.handleFormChange}
-          name={this.state.name}
-        />
-        <Friends
-          age={this.state.age}
-          deleteFriend={this.deleteFriend}
-          email={this.state.email}
-          friends={this.state.friends}
-          handleChange={this.handleFormChange}
-          name={this.state.name}
-          updateFriend={this.updateFriend}
-        />
-      </div>
+      <>
+        <header>
+          <h1>Add New Friend</h1>
+          <FriendForm
+            submit={this.addNewFriend}
+            age={this.state.age}
+            email={this.state.email}
+            handleChange={this.handleFormChange}
+            name={this.state.name}
+          />
+        </header>
+        <main>
+          <h1>Friends List</h1>
+          <Friends
+            age={this.state.age}
+            deleteFriend={this.deleteFriend}
+            email={this.state.email}
+            friends={this.state.friends}
+            handleChange={this.handleFormChange}
+            name={this.state.name}
+            updateFriend={this.updateFriend}
+          />
+        </main>
+      </>
     );
   }
 }
