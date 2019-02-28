@@ -8,10 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      friends: [],
-      age: '',
-      email: '',
-      name: '',
+      friends: []
     };
   }
 
@@ -22,53 +19,61 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  addNewFriend = e => {
-    e.preventDefault();
+  addNewFriend = friend => {
     axios
-      .post('http://localhost:5000/friends', {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email
-      })
-      .then(res => this.setState({
-        friends: res.data,
-        age: '',
-        email: '',
-        name: '',
-      }))
-      .catch(err => console.log(err))
-  }
+        .post('http://localhost:5000/friends', friend)
+        .then(res => this.setState({ friends: res.data }))
+        .catch(err => console.log(err));
+    }
 
-  deleteFriend = id => {
+  updateFriend = (friend, id) => {
     axios
-      .delete(`http://localhost:5000/friends/${id}`)
-      .then(res => this.setState({ friends: res.data }))
-      .catch(err => console.log(err))
+        .put(`http://localhost:5000/friends/${id}`, friend)
+        .then(res => this.setState({ friends: res.data }))
+        .catch(err => console.log(err));
   }
 
-  handleFormChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
+  // addNewFriend = e => {
+  //   e.preventDefault();
+  //   axios
+  //     .post('http://localhost:5000/friends', {
+  //       name: this.state.name,
+  //       age: this.state.age,
+  //       email: this.state.email
+  //     })
+  //     .then(res => this.setState({
+  //       friends: res.data,
+  //       age: '',
+  //       email: '',
+  //       name: '',
+  //     }))
+  //     .catch(err => console.log(err))
+  // }
 
-  updateFriend = (id, e) => {
-    e.preventDefault();
-    axios
-      .put(`http://localhost:5000/friends/${id}`, {
-        name: this.state.name,
-        age: this.state.age,
-        email: this.state.email
-    })
-      .then(res => this.setState({
-        friends: res.data,
-        age: '',
-        email: '',
-        name: '',
-      }))
-      .catch(err => console.log(err))
+  // deleteFriend = id => {
+  //   axios
+  //     .delete(`http://localhost:5000/friends/${id}`)
+  //     .then(res => this.setState({ friends: res.data }))
+  //     .catch(err => console.log(err))
+  // }
 
-  }
+  // updateFriend = (id, e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .put(`http://localhost:5000/friends/${id}`, {
+  //       name: this.state.name,
+  //       age: this.state.age,
+  //       email: this.state.email
+  //   })
+  //     .then(res => this.setState({
+  //       friends: res.data,
+  //       age: '',
+  //       email: '',
+  //       name: '',
+  //     }))
+  //     .catch(err => console.log(err))
+
+  // }
 
   render() {
     return (
@@ -78,21 +83,13 @@ class App extends Component {
           <h1>Add New Friend</h1>
             <FriendForm
               submit={this.addNewFriend}
-              age={this.state.age}
-              email={this.state.email}
-              handleChange={this.handleFormChange}
-              name={this.state.name}
             />
         </div>
           
         </header>
         <Friends
-          age={this.state.age}
           deleteFriend={this.deleteFriend}
-          email={this.state.email}
           friends={this.state.friends}
-          handleChange={this.handleFormChange}
-          name={this.state.name}
           updateFriend={this.updateFriend}
         />
       </>

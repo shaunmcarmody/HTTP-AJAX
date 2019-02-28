@@ -8,13 +8,9 @@ const Friends = props => (
         {
             props.friends.map(friend => (
                 <Friend
-                    age={props.age}
-                    email={props.email}
+                    deleteFriend={props.deleteFriend}
                     friend={friend}
                     key={friend.id}
-                    name={props.name}
-                    handleChange={props.handleChange}
-                    deleteFriend={props.deleteFriend}
                     updateFriend={props.updateFriend}
                 />
             ))
