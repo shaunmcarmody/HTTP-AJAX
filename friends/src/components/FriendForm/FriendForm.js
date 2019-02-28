@@ -10,30 +10,23 @@ class FriendForm extends React.Component {
         }
     }
 
-    componentDidUpdate = prevState => {
-        console.log()
-    }
-
     handleChange = e => {
         e.persist();
+        let value = e.target.name === 'age' ? parseInt(e.target.value, 10) : e.target.value;
         this.setState(prevState => ({
           friend: {
             ...prevState.friend,
-            [e.target.name]: e.target.value
+            [e.target.name]: value
           }
         }));
     }
 
     submit = e => {
         e.preventDefault();
-        this.props.submit(this.state.friend, this.state.id);
-        this.setState(prevState => ({
-          friend: {
-              name: '',
-              age: '',
-              email: '',
-          }
-        }));
+        this.props.submit(this.state.friend, this.state.id, (name, age, email) => {
+            this.setState({ friend: { name, age, email } });
+        });
+        
     }
 
     render() {

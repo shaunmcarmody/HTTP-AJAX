@@ -19,17 +19,23 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
-  addNewFriend = friend => {
+  addNewFriend = (friend, id, cb) => {
     axios
         .post('http://localhost:5000/friends', friend)
-        .then(res => this.setState({ friends: res.data }))
+        .then(res => {
+          this.setState({ friends: res.data })
+          cb('', '', '');
+        })
         .catch(err => console.log(err));
     }
 
-  updateFriend = (friend, id) => {
+  updateFriend = (friend, id, cb) => {
     axios
         .put(`http://localhost:5000/friends/${id}`, friend)
-        .then(res => this.setState({ friends: res.data }))
+        .then(res => {
+          this.setState({ friends: res.data })
+          cb(friend.name, friend.age, friend.email);
+        })
         .catch(err => console.log(err));
   }
 
@@ -44,13 +50,12 @@ class App extends Component {
     return (
       <>
         <header className="header">
-        <div className="header-container">
-          <h1>Add New Friend</h1>
-            <FriendForm
-              submit={this.addNewFriend}
-            />
-        </div>
-          
+          <div className="header-container">
+            <h1>Add New Friend</h1>
+              <FriendForm
+                submit={this.addNewFriend}
+              />
+          </div>
         </header>
         <Friends
           deleteFriend={this.deleteFriend}
