@@ -56,6 +56,7 @@ app.get('/friends', (req, res) => {
 });
 
 app.post('/friends', (req, res) => {
+  if (!req.body.name || !req.body.email || !req.body.age) return err;
   const friend = { id: getNewId(), ...req.body };
   friends = [...friends, friend];
   res.status(201).json(friends);
